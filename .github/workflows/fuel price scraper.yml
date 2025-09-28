@@ -24,9 +24,9 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run scraper
+      - name: Run fuel price scraper
         run: |
-          python scraper.py
+          python fuel price scraper.py
 
       - name: Commit and push results
         run: |
