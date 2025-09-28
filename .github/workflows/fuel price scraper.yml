@@ -26,7 +26,7 @@ jobs:
 
       - name: Run fuel price scraper
         run: |
-          python fuel price scraper.py
+          python "fuel price scraper.py"
 
       - name: Commit and push results
         run: |
