@@ -50,7 +50,7 @@ def biofuel():
         for j, blend_row_id in enumerate(st.session_state.blend_rows):
             col1, col2, col3, col4, col5, col6, col7, col8 = st.columns([1.5, 1.5, 1.5, 1.25, 2, 2, 2, 2])
             with col1:
-                st.selectbox("Blend Fuel", ['HFO', 'LFO', 'MGO'], key=f"blend_{blend_row_id}")
+                st.selectbox("Blend Fuel", ['HFO', 'LFO', 'MGO/MDO'], key=f"blend_{blend_row_id}")
             with col2:
                 blend = st.number_input(f"Total Blend Fuel {j} (MT) (From BDN)", key=f"blend_input_{blend_row_id}", format="%.3f")
             with col3:
@@ -167,7 +167,7 @@ with expander("Voyage Details", True):
         with col3:
             st.number_input("LFO", key=f"lfo_input_{row_id}", format="%.3f")
         with col4:
-            st.number_input("MDO", key=f"mdo_input_{row_id}", format="%.3f")
+            st.number_input("MGO/MDO", key=f"mdo_input_{row_id}", format="%.3f")
         with col5:
             st.number_input("LPG P", key=f"lpgp_input_{row_id}", format="%.3f")
         with col6:
@@ -198,27 +198,27 @@ if st.button("Calculate",use_container_width=True):
             "Leg Category": st.session_state.get(f"leg_category_{row_id}", ""),
             "HFO": st.session_state.get(f"hfo_input_{row_id}", 0.0), #MT
             "LFO": st.session_state.get(f"lfo_input_{row_id}", 0.0), #MT
-            "MDO": st.session_state.get(f"mdo_input_{row_id}", 0.0), #MT
+            "MGO/MDO": st.session_state.get(f"mdo_input_{row_id}", 0.0), #MT
             "LPG P": st.session_state.get(f"lpgp_input_{row_id}", 0.0), #MT
             "LPG B": st.session_state.get(f"lpgb_input_{row_id}", 0.0), #MT
             "HFO_LCV": 0.0405, #MJ/g
             "LFO_LCV": 0.041, #MJ/g
-            "MDO_LCV": 0.0427, #MJ/g
+            "MGO/MDO_LCV": 0.0427, #MJ/g
             "LPG P_LCV": 0.046, #MJ/g
             "LPG B_LCV": 0.046, #MJ/g
             "HFO_WtT": 13.5, #WtTco2eq/MJ
             "LFO_WtT": 13.2, #WtTco2eq/MJ
-            "MDO_WtT": 14.4, #WtTco2eq/MJ
+            "MGO/MDO_WtT": 14.4, #WtTco2eq/MJ
             "LPG P_WtT": 7.8, #WtTco2eq/MJ
             "LPG B_WtT": 7.8, #WtTco2eq/MJ
             "HFO_TtW": 78.2442, #TtWco2eq/MJ
             "LFO_TtW": 78.19244, #TtWco2eq/MJ
-            "MDO_TtW": 76.36745, #TtWco2eq/MJ
+            "MGO/MDO_TtW": 76.36745, #TtWco2eq/MJ
             "LPG P_TtW": 66.41065, #TtWco2eq/MJ
             "LPG B_TtW": 67.06283, #TtWco2eq/MJ
             "HFO_CO2": 3.114, #CO2/Fuel
             "LFO_CO2": 3.151, #CO2/Fuel
-            "MDO_CO2": 3.206, #CO2/Fuel
+            "MGO/MDO_CO2": 3.206, #CO2/Fuel
             "LPG P_CO2": 3, #CO2/Fuel
             "LPG B_CO2": 3.03, #CO2/Fuel
         }
