@@ -4,7 +4,7 @@ import numpy as np
 from streamlit import expander
 from collections import defaultdict
 
-st.set_page_config(page_title="EU Emissions Calculator", layout="wide")
+st.set_page_config(page_title="EU Maritime Calculator", layout="wide")
 st.title("EU Maritime Calculator")
 
 def fuel_eu(df, fuel_cols=None):
