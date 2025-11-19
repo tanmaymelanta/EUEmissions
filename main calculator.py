@@ -123,7 +123,7 @@ def lng(engine_types):
 
 def fuel_list(fuel_types):
     fuel_df = pd.DataFrame({
-        "Fuel/Engine": ["HFO ", "LFO ", "MGO/MDO ", "LPG P ", "LPG B "],
+        "Fuel/Engine": ["HFO", "LFO", "MGO/MDO", "LPG P", "LPG B"],
         "LCV": [0.0405, 0.041, 0.0427, 0.046, 0.046],
         "WtT": [13.5, 13.2, 14.4, 7.8, 7.8],
         "TtW": [78.2442, 78.19244, 76.36745, 66.41065, 67.06283],
