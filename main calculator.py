@@ -257,10 +257,11 @@ def logout():
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-st.sidebar.header("Login")
-st.sidebar.text_input("Username", key="username")
-st.sidebar.text_input("Password", type="password", key="password")
-st.sidebar.button("Log In", on_click=login)
+if not st.session_state.logged_in:
+    st.sidebar.header("Login")
+    st.sidebar.text_input("Username", key="username")
+    st.sidebar.text_input("Password", type="password", key="password")
+    st.sidebar.button("Log In", on_click=login)
     
 if st.button("Calculate",use_container_width=True):
     if not st.session_state.logged_in:
