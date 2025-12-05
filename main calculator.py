@@ -7,9 +7,6 @@ from collections import defaultdict
 st.set_page_config(page_title="EU Maritime Calculator", layout="wide")
 st.title("EU Maritime Calculator")
 
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
 def fuel_eu(df, fuel_cols=None):
     new_df = df[df['Leg Category'].isin(['Into the EU', 'Out of the EU', 'Within EU'])].reset_index(drop=True)
     total_energy_in_scope = new_df['Total Energy Consumed In Scope'].sum()
@@ -196,6 +193,9 @@ def login():
         st.error("Invalid username or password")
 
 def logout():
+    st.session_state.logged_in = False
+
+if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 if not st.session_state.logged_in:
