@@ -181,38 +181,6 @@ def columns_helper(bioFuelState, lng_engine_list, fuel_types_list, ice_class_cat
     columns_df['Bio Bunker'] = round(columns_df['Bio Bunker'].fillna(0), 0).astype(int)
     return columns_df
 
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
-def login():
-    if (st.session_state.get("username") == "admin" and st.session_state.get("password") == "1234"):
-        st.session_state.logged_in = True
-        st.success("Login successful!")
-    else:
-        st.error("Invalid username or password")
-
-
-# --- Logout function ---
-def logout():
-    st.session_state.logged_in = False
-
-
-# --- LOGIN SCREEN ---
-if not st.session_state.logged_in:
-    st.sidebar.header("Login")
-    st.sidebar.text_input("Username", key="username")
-    st.sidebar.text_input("Password", type="password", key="password")
-    st.sidebar.button("Log In", on_click=login)
-
-    st.warning("Please log in to continue.")
-    st.stop()
-
-
-# --- MAIN APP SIDEBAR (Visible after login) ---
-st.sidebar.image("Profile.webp")
-st.sidebar.header(f"Logged in as {st.session_state.username}")
-st.sidebar.button("Log Out", on_click=logout)
-
 with st.expander("Vessel/Voyage Information",True):
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -276,7 +244,32 @@ with expander("Voyage Details", True):
                 if st.button("🗑️", key=f"remove_row_{row_id}", use_container_width=True):
                     remove_row(i)
 
+def login():
+    if (st.session_state.get("username") == "admin" and st.session_state.get("password") == "1234"):
+        st.session_state.logged_in = True
+        st.success("Login successful!")
+    else:
+        st.error("Invalid username or password")
+
+def logout():
+    st.session_state.logged_in = False
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+st.sidebar.header("Login")
+st.sidebar.text_input("Username", key="username")
+st.sidebar.text_input("Password", type="password", key="password")
+st.sidebar.button("Log In", on_click=login)
+    
 if st.button("Calculate",use_container_width=True):
+    if not st.session_state.logged_in:
+        st.warning("Please log in to continue.")
+    else:
+        st.sidebar.image("Profile.webp")
+        st.sidebar.header(f"Logged in as {st.session_state.username}")
+        st.sidebar.button("Log Out", on_click=logout)
+
     st.markdown("&nbsp;", unsafe_allow_html=True)
     data = []
     for row_id in st.session_state.rows:
