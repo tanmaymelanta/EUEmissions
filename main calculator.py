@@ -7,6 +7,9 @@ from collections import defaultdict
 st.set_page_config(page_title="EU Maritime Calculator", layout="wide")
 st.title("EU Maritime Calculator")
 
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
 def fuel_eu(df, fuel_cols=None):
     new_df = df[df['Leg Category'].isin(['Into the EU', 'Out of the EU', 'Within EU'])].reset_index(drop=True)
     total_energy_in_scope = new_df['Total Energy Consumed In Scope'].sum()
@@ -180,8 +183,33 @@ def columns_helper(bioFuelState, lng_engine_list, fuel_types_list, ice_class_cat
         columns_df = pd.concat([columns_df, ice_columns_df], ignore_index=True)
     columns_df['Bio Bunker'] = round(columns_df['Bio Bunker'].fillna(0), 0).astype(int)
     return columns_df
+    
+def login():
+    username = st.session_state["username"]
+    password = st.session_state["password"]
 
-st.siderbar.input("")
+    # Example credentials (replace with your own logic)
+    if username == "admin" and password == "1234":
+        st.session_state.logged_in = True
+        st.success("Login successful!")
+    else:
+        st.error("Invalid username or password")
+
+def logout():
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    st.sidebar.header("Login")
+    st.sidebar.text_input("Username", key="username")
+    st.sidebar.text_input("Password", type="password", key="password")
+    st.sidebar.button("Log In", on_click=login)
+
+    st.warning("Please log in to continue.")
+    st.stop()  # ⛔ Prevents the rest of the app from running until logged in
+
+
+# --- Main App (visible only after login) ---
+st.sidebar.button("Log Out", on_click=logout)
 
 with st.expander("Vessel/Voyage Information",True):
     col1, col2, col3, col4 = st.columns(4)
