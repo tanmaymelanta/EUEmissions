@@ -181,6 +181,8 @@ def columns_helper(bioFuelState, lng_engine_list, fuel_types_list, ice_class_cat
     columns_df['Bio Bunker'] = round(columns_df['Bio Bunker'].fillna(0), 0).astype(int)
     return columns_df
 
+st.siderbar.input("")
+
 with st.expander("Vessel/Voyage Information",True):
     col1, col2, col3, col4 = st.columns(4)
     with col1:
