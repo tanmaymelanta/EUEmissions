@@ -123,7 +123,7 @@ def lng(engine_types):
 
 def fuel_list(fuel_types):
     fuel_df = pd.DataFrame({
-        "Fuel/Engine": ["HFO ", "LFO ", "MGO/MDO ", "LPG P ", "LPG B "],
+        "Fuel/Engine": ["HFO", "LFO", "MGO/MDO", "LPG P", "LPG B"],
         "LCV": [0.0405, 0.041, 0.0427, 0.046, 0.046],
         "WtT": [13.5, 13.2, 14.4, 7.8, 7.8],
         "TtW": [78.2442, 78.19244, 76.36745, 66.41065, 67.06283],
@@ -253,132 +253,117 @@ def login():
 
 def logout():
     st.session_state.logged_in = False
-
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
-if not st.session_state.logged_in:
-    st.sidebar.header("Login")
-    st.sidebar.text_input("Username", key="username")
-    st.sidebar.text_input("Password", type="password", key="password")
-    st.sidebar.button("Log In", on_click=login)
     
 if st.button("Calculate",use_container_width=True):
-    if not st.session_state.logged_in:
-        st.warning("Please log in to continue.")
-    else:
-        st.sidebar.image("Profile.webp")
-        st.sidebar.header(f"Logged in as {st.session_state.username}")
-        st.sidebar.button("Log Out", on_click=logout)
+    st.warning("Please contact Creator for Demo")
+#     st.markdown("&nbsp;", unsafe_allow_html=True)
+#     data = []
+#     for row_id in st.session_state.rows:
+#         row_data = {
+#             "Leg Category": st.session_state.get(f"leg_category_{row_id}", "")
+#         }
+#         for fuel, bunker, type, lcv, WtT, TtW, co2 in (zip(columns_df['Fuel/Engine'], columns_df['Bio Bunker'], columns_df['Blend Fuel Type'], columns_df['LCV'], columns_df['WtT'], columns_df['TtW'], columns_df['CO2'])):
+#             if "LNG" in fuel:
+#                 row_data[f"{fuel}"] = st.session_state.get(f"lng_{fuel}_{row_id}", 0.0)
+#                 row_data[f"{fuel}_LCV"] = lcv
+#                 row_data[f"{fuel}_WtT"] = WtT
+#                 row_data[f"{fuel}_TtW"] = TtW
+#                 row_data[f"{fuel}_CO2"] = co2
+#             elif fuel.startswith("B"):
+#                 key = f"bio_bunker_{bunker}_{fuel}_{row_id}"
+#                 fuel_w_o = fuel.split("in ICE")[0]
+#                 row_data[f"{bunker}_{fuel}"] = st.session_state.get(key, 0.0)*(int(fuel_w_o[1:])/100)
+#                 row_data[type] += st.session_state.get(key, 0.0)*(1-(int(fuel_w_o[1:])/100))
+#                 row_data[f"{bunker}_{fuel}_LCV"] = lcv
+#                 row_data[f"{bunker}_{fuel}_WtT"] = WtT
+#                 row_data[f"{bunker}_{fuel}_TtW"] = TtW
+#                 row_data[f"{bunker}_{fuel}_CO2"] = 0
+#             else:
+#                 row_data[f"{fuel}"] = st.session_state.get(f"{fuel}_input_{row_id}", 0.0)
+#                 row_data[f"{fuel}_LCV"] = lcv
+#                 row_data[f"{fuel}_WtT"] = WtT
+#                 row_data[f"{fuel}_TtW"] = TtW
+#                 row_data[f"{fuel}_CO2"] = co2
+#         if st.session_state.ice_class != "Not Applicable":
+#             row_data["Total Distance"] = st.session_state.get(f"distance_input_{row_id}", "")
+#             row_data["Distance in ICE"] = st.session_state.get(f"ice_distance_input_{row_id}", "")
+#         data.append(row_data)
+#     df = pd.DataFrame(data)
 
-        st.markdown("&nbsp;", unsafe_allow_html=True)
-        data = []
-        for row_id in st.session_state.rows:
-            row_data = {
-                "Leg Category": st.session_state.get(f"leg_category_{row_id}", "")
-            }
-            for fuel, bunker, type, lcv, WtT, TtW, co2 in (zip(columns_df['Fuel/Engine'], columns_df['Bio Bunker'], columns_df['Blend Fuel Type'], columns_df['LCV'], columns_df['WtT'], columns_df['TtW'], columns_df['CO2'])):
-                if "LNG" in fuel:
-                    row_data[f"{fuel}"] = st.session_state.get(f"lng_{fuel}_{row_id}", 0.0)
-                    row_data[f"{fuel}_LCV"] = lcv
-                    row_data[f"{fuel}_WtT"] = WtT
-                    row_data[f"{fuel}_TtW"] = TtW
-                    row_data[f"{fuel}_CO2"] = co2
-                elif fuel.startswith("B"):
-                    key = f"bio_bunker_{bunker}_{fuel}_{row_id}"
-                    fuel_w_o = fuel.split("in ICE")[0]
-                    row_data[f"{bunker}_{fuel}"] = st.session_state.get(key, 0.0)*(int(fuel_w_o[1:])/100)
-                    row_data[type] += st.session_state.get(key, 0.0)*(1-(int(fuel_w_o[1:])/100))
-                    row_data[f"{bunker}_{fuel}_LCV"] = lcv
-                    row_data[f"{bunker}_{fuel}_WtT"] = WtT
-                    row_data[f"{bunker}_{fuel}_TtW"] = TtW
-                    row_data[f"{bunker}_{fuel}_CO2"] = 0
-                else:
-                    row_data[f"{fuel}"] = st.session_state.get(f"{fuel}_input_{row_id}", 0.0)
-                    row_data[f"{fuel}_LCV"] = lcv
-                    row_data[f"{fuel}_WtT"] = WtT
-                    row_data[f"{fuel}_TtW"] = TtW
-                    row_data[f"{fuel}_CO2"] = co2
-            if st.session_state.ice_class != "Not Applicable":
-                row_data["Total Distance"] = st.session_state.get(f"distance_input_{row_id}", "")
-                row_data["Distance in ICE"] = st.session_state.get(f"ice_distance_input_{row_id}", "")
-            data.append(row_data)
-        df = pd.DataFrame(data)
-    
-        fuel_cols = [col for col in df.columns]
-        products = []
-        ice_products = []
-        for fuel_col in fuel_cols:
-            lcv_col = fuel_col + '_LCV'
-            if (lcv_col in df.columns) and ("in ICE" not in fuel_col):
-                products.append(df[fuel_col] * 1000000 * df[lcv_col])
-            if (lcv_col in df.columns) and ("in ICE" in fuel_col):
-                ice_products.append(df[fuel_col] * 1000000 * df[lcv_col])
-        if products == []:
-            total_energy_in_scope = 0
-            new_fuel_dict = {}
-            Well_to_Tank_GHG = 0
-            Tank_to_Wake_GHG = 0
-            Well_to_Wake = 0
-            compliance_balance = 0
-            penalty = 0
-            eua, eu_ets_df = eu_ets(df=df, fuel_cols=fuel_cols)
-        else:
-            df['Total Energy Consumed'] = pd.concat(products, axis=1).sum(axis=1)
-            df['Total Energy Consumed In Scope'] = np.where(df['Leg Category'].values == 'Within EU', df['Total Energy Consumed'].values, np.where(np.isin(df['Leg Category'].values, ['Into the EU', 'Out of the EU']), df['Total Energy Consumed'].values * 0.5, 0))
-            st.dataframe(df[[col for col in df.columns if not col.endswith('_LCV') and not col.endswith('_WtT') and not col.endswith('_TtW') and not col.endswith('_CO2')]])
-            eua, eu_ets_df = eu_ets(df=df, fuel_cols=fuel_cols)
-    
-            total_energy_in_scope, new_fuel_dict = fuel_eu(df=df, fuel_cols=fuel_cols)
-            test_df = pd.DataFrame(new_fuel_dict)
-            Well_to_Tank_GHG = round((test_df.iloc[0] * test_df.iloc[2] * test_df.iloc[1]).sum() / total_energy_in_scope if total_energy_in_scope != 0 else 0, 5) #WtT GHG Intensity = ( MT x 1,000,000 x 'WtTco2eq/MJ' x LCV ) / MJ
-            Tank_to_Wake_GHG = round((test_df.iloc[0] * test_df.iloc[3] * test_df.iloc[1]).sum() / total_energy_in_scope if total_energy_in_scope != 0 else 0, 5) #TtW GHG Intensity = ( MT x 1,000,000 x 'TtWco2eq/MJ' x LCV) / MJ
-            Well_to_Wake = round(Well_to_Tank_GHG + Tank_to_Wake_GHG, 5)
-    
-            if st.session_state.ice_class != "Not Applicable":
-                total_energy_in_scope_actual = fuel_eu_ice(df, ice_products, st.session_state.ice_class)
-                compliance_balance_ice = round((89.3368 - Well_to_Wake) * total_energy_in_scope_actual, 1)
-                penalty_ice = 0 if compliance_balance_ice > 0 else round(abs((compliance_balance_ice / Well_to_Wake) * (2400 / 41000)), 0)
-    
-            compliance_balance = round((89.3368 - Well_to_Wake) * total_energy_in_scope, 1)
-            penalty = 0 if compliance_balance >= 0 else round(abs((compliance_balance / Well_to_Wake) * (2400 / 41000)),0)
-    
-        left, right = st.columns([1.5, 2])
-    
-        with left:
-            st.markdown("### FUEL EU", unsafe_allow_html=True)
-            output_text = f"""
-    Total Energy In Scope: {total_energy_in_scope:,.0f} MJ
-    
-    Fuel EU Consumption (MT):
-    """
-            fuel_totals = defaultdict(int)
-            for key, value in new_fuel_dict.items():
-                base_fuel = key.split(" in ")[0]
-                fuel_totals[base_fuel] += value[0]
-    
-            for fuel, total in fuel_totals.items():
-                output_text += f"  - {fuel}: {total:.3f} MT\n"
-    
-            output_text += f"""
-    Well to Tank GHG Intensity: {Well_to_Tank_GHG} gCO2eq/MJ 
-    Tank to Wake GHG Intensity: {Tank_to_Wake_GHG} gCO2eq/MJ
-    Total Well to Wake GHG Intensity: {Well_to_Wake} gCO2eq/MJ
-    Compliance Balance: {compliance_balance / 1e6:,.2f} x 10⁶ gCO2eq
-    Penalty: €{penalty:,.0f}
-    """
-            if st.session_state.ice_class != "Not Applicable":
-                output_text += f"""
-    Compliance Balance with ICE Navigation Adjustments: {compliance_balance_ice / 1e6:,.2f} x 10⁶ gCO2eq
-    Penalty with ICE Navigation Adjustments: €{penalty_ice:,.0f}
-    """
-            st.code(output_text, language="text")
-    
-        with right:
-            st.markdown("### EU ETS", unsafe_allow_html=True)
-            st.code(f"Total EUA: {eua:,.2f}", language="text")
-            st.dataframe(eu_ets_df[[col for col in eu_ets_df.columns if not col.endswith('_LCV') and not col.endswith('_WtT') and not col.endswith('_TtW') and not col.endswith('_CO2') and not col.endswith('Total Energy Consumed') and not col.endswith('Total Energy Consumed In Scope')]], hide_index=True)
-    
-        with expander("Bunker Price ($/MT)", True):
-            df = pd.read_csv("data/bunker_prices.csv")
-            st.dataframe(df, hide_index=True)
+#     fuel_cols = [col for col in df.columns]
+#     products = []
+#     ice_products = []
+#     for fuel_col in fuel_cols:
+#         lcv_col = fuel_col + '_LCV'
+#         if (lcv_col in df.columns) and ("in ICE" not in fuel_col):
+#             products.append(df[fuel_col] * 1000000 * df[lcv_col])
+#         if (lcv_col in df.columns) and ("in ICE" in fuel_col):
+#             ice_products.append(df[fuel_col] * 1000000 * df[lcv_col])
+#     if products == []:
+#         total_energy_in_scope = 0
+#         new_fuel_dict = {}
+#         Well_to_Tank_GHG = 0
+#         Tank_to_Wake_GHG = 0
+#         Well_to_Wake = 0
+#         compliance_balance = 0
+#         penalty = 0
+#         eua, eu_ets_df = eu_ets(df=df, fuel_cols=fuel_cols)
+#     else:
+#         df['Total Energy Consumed'] = pd.concat(products, axis=1).sum(axis=1)
+#         df['Total Energy Consumed In Scope'] = np.where(df['Leg Category'].values == 'Within EU', df['Total Energy Consumed'].values, np.where(np.isin(df['Leg Category'].values, ['Into the EU', 'Out of the EU']), df['Total Energy Consumed'].values * 0.5, 0))
+#         st.dataframe(df[[col for col in df.columns if not col.endswith('_LCV') and not col.endswith('_WtT') and not col.endswith('_TtW') and not col.endswith('_CO2')]])
+#         eua, eu_ets_df = eu_ets(df=df, fuel_cols=fuel_cols)
+
+#         total_energy_in_scope, new_fuel_dict = fuel_eu(df=df, fuel_cols=fuel_cols)
+#         test_df = pd.DataFrame(new_fuel_dict)
+#         Well_to_Tank_GHG = round((test_df.iloc[0] * test_df.iloc[2] * test_df.iloc[1]).sum() / total_energy_in_scope if total_energy_in_scope != 0 else 0, 5) #WtT GHG Intensity = ( MT x 1,000,000 x 'WtTco2eq/MJ' x LCV ) / MJ
+#         Tank_to_Wake_GHG = round((test_df.iloc[0] * test_df.iloc[3] * test_df.iloc[1]).sum() / total_energy_in_scope if total_energy_in_scope != 0 else 0, 5) #TtW GHG Intensity = ( MT x 1,000,000 x 'TtWco2eq/MJ' x LCV) / MJ
+#         Well_to_Wake = round(Well_to_Tank_GHG + Tank_to_Wake_GHG, 5)
+
+#         if st.session_state.ice_class != "Not Applicable":
+#             total_energy_in_scope_actual = fuel_eu_ice(df, ice_products, st.session_state.ice_class)
+#             compliance_balance_ice = round((89.3368 - Well_to_Wake) * total_energy_in_scope_actual, 1)
+#             penalty_ice = 0 if compliance_balance_ice > 0 else round(abs((compliance_balance_ice / Well_to_Wake) * (2400 / 41000)), 0)
+
+#         compliance_balance = round((89.3368 - Well_to_Wake) * total_energy_in_scope, 1)
+#         penalty = 0 if compliance_balance >= 0 else round(abs((compliance_balance / Well_to_Wake) * (2400 / 41000)),0)
+
+#     left, right = st.columns([1.5, 2])
+
+#     with left:
+#         st.markdown("### FUEL EU", unsafe_allow_html=True)
+#         output_text = f"""
+# Total Energy In Scope: {total_energy_in_scope:,.0f} MJ
+
+# Fuel EU Consumption (MT):
+# """
+#         fuel_totals = defaultdict(int)
+#         for key, value in new_fuel_dict.items():
+#             base_fuel = key.split(" in ")[0]
+#             fuel_totals[base_fuel] += value[0]
+
+#         for fuel, total in fuel_totals.items():
+#             output_text += f"  - {fuel}: {total:.3f} MT\n"
+
+#         output_text += f"""
+# Well to Tank GHG Intensity: {Well_to_Tank_GHG} gCO2eq/MJ 
+# Tank to Wake GHG Intensity: {Tank_to_Wake_GHG} gCO2eq/MJ
+# Total Well to Wake GHG Intensity: {Well_to_Wake} gCO2eq/MJ
+# Compliance Balance: {compliance_balance / 1e6:,.2f} x 10⁶ gCO2eq
+# Penalty: €{penalty:,.0f}
+# """
+#         if st.session_state.ice_class != "Not Applicable":
+#             output_text += f"""
+# Compliance Balance with ICE Navigation Adjustments: {compliance_balance_ice / 1e6:,.2f} x 10⁶ gCO2eq
+# Penalty with ICE Navigation Adjustments: €{penalty_ice:,.0f}
+# """
+#         st.code(output_text, language="text")
+
+#     with right:
+#         st.markdown("### EU ETS", unsafe_allow_html=True)
+#         st.code(f"Total EUA: {eua:,.2f}", language="text")
+#         st.dataframe(eu_ets_df[[col for col in eu_ets_df.columns if not col.endswith('_LCV') and not col.endswith('_WtT') and not col.endswith('_TtW') and not col.endswith('_CO2') and not col.endswith('Total Energy Consumed') and not col.endswith('Total Energy Consumed In Scope')]], hide_index=True)
+
+#     with expander("Bunker Price ($/MT)", True):
+#         df = pd.read_csv("data/bunker_prices.csv")
+#         st.dataframe(df, hide_index=True)
