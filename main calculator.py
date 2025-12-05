@@ -184,14 +184,8 @@ def columns_helper(bioFuelState, lng_engine_list, fuel_types_list, ice_class_cat
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-
-# --- Login function ---
 def login():
-    # Example credentials (replace with real logic)
-    if (
-        st.session_state.get("username") == "admin"
-        and st.session_state.get("password") == "1234"
-    ):
+    if (st.session_state.get("username") == "admin" and st.session_state.get("password") == "1234"):
         st.session_state.logged_in = True
         st.success("Login successful!")
     else:
@@ -215,7 +209,7 @@ if not st.session_state.logged_in:
 
 
 # --- MAIN APP SIDEBAR (Visible after login) ---
-st.sidebar.image("path/to/image.png")
+st.sidebar.image("Profile.webp")
 st.sidebar.header(f"Logged in as {st.session_state.username}")
 st.sidebar.button("Log Out", on_click=logout)
 
