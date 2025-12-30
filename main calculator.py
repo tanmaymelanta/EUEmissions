@@ -86,7 +86,7 @@ def biofuel():
             lcv = energy_input / bio_input if bio_input != 0 else 0.0
             ttw = 78.07811 if bio_fuel_type == "Bio-diesel" else (72.04295 if bio_fuel_type == "HVO" else 0.0)
             cfCo2 = 2.834 if bio_fuel_type == "Bio-diesel" else (3.115 if bio_fuel_type == "HVO" else 0.0)
-            wtt = (E_input - cfCo2/lcv) if intensity_input != 0 else (-61.69459 if bio_fuel_type == "Bio-diesel" else -54.79545 if bio_fuel_type == "HVO" else 0.0)
+            wtt = (E_input - cfCo2/lcv) if E_input != 0 else (-61.69459 if bio_fuel_type == "Bio-diesel" else -54.79545 if bio_fuel_type == "HVO" else 0.0)
             row_data = {
                 "Bio Bunker": blend_row_id,
                 "Blend Fuel Type": st.session_state.get(f"blend_{blend_row_id}", 0.0),
