@@ -80,12 +80,13 @@ def biofuel():
         blend_data = []
         for blend_row_id in st.session_state.blend_rows:
             bio_fuel_type = st.session_state.get(f"bio_{blend_row_id}", "")
-            intensity_input = st.session_state.get(f"intensity_input_{blend_row_id}", 0.0)
+            E_input = st.session_state.get(f"intensity_input_{blend_row_id}", 0.0)
             bio_input = st.session_state.get(f"bio_input_{blend_row_id}", 0.0)
             energy_input = st.session_state.get(f"energy_input_{blend_row_id}", 0.0)
-            ttw = 78.07811 if bio_fuel_type == "Bio-diesel" else (72.04295 if bio_fuel_type == "HVO" else 0.0)
-            wtt = intensity_input-ttw if intensity_input != 0 else (-61.69459 if bio_fuel_type == "Bio-diesel" else -54.79545 if bio_fuel_type == "HVO" else 0.0)
             lcv = energy_input / bio_input if bio_input != 0 else 0.0
+            ttw = 78.07811 if bio_fuel_type == "Bio-diesel" else (72.04295 if bio_fuel_type == "HVO" else 0.0)
+            cfCo2 = 2.834 if bio_fuel_type == "Bio-diesel" else (3.115 if bio_fuel_type == "HVO" else 0.0)
+            wtt = (E_input - cfCo2/lcv) if intensity_input != 0 else (-61.69459 if bio_fuel_type == "Bio-diesel" else -54.79545 if bio_fuel_type == "HVO" else 0.0)
             row_data = {
                 "Bio Bunker": blend_row_id,
                 "Blend Fuel Type": st.session_state.get(f"blend_{blend_row_id}", 0.0),
