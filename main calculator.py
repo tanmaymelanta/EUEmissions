@@ -1,8 +1,15 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import logging
 from streamlit import expander
 from collections import defaultdict
+
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s",
+)
 
 st.set_page_config(page_title="EU Maritime Calculator", layout="wide")
 st.title("EU Maritime Calculator")
@@ -276,6 +283,7 @@ if st.session_state.calculate and not st.session_state.logged_in:
         st.warning("Please Contact Owner for Credentials")
         st.stop()
 elif st.session_state.calculate and st.session_state.logged_in:
+    logging.info("Button clicked")
     st.markdown("&nbsp;", unsafe_allow_html=True)
     data = []
     for row_id in st.session_state.rows:
