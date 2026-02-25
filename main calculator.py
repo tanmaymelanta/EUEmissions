@@ -193,7 +193,7 @@ def login():
     username = st.session_state["username"]
     password = st.session_state["password"]
 
-    if username == "admin" and password == "1234":
+    if username == "admin" and password == "mikuja8":
         st.session_state.logged_in = True
         st.success("Login successful!")
     else:
