@@ -193,7 +193,7 @@ def login():
     username = st.session_state["username"]
     password = st.session_state["password"]
 
-    if username == "admin" and password == "mikuja8":
+    if username == "admin" and password == "admin":
         st.session_state.logged_in = True
         st.success("Login successful!")
     else:
@@ -280,7 +280,7 @@ st.button("Calculate", use_container_width=True, key="calculate")
 
 if st.session_state.calculate and not st.session_state.logged_in:
         st.warning("Please log in to continue")
-        st.warning("Please Contact Owner for Credentials")
+        st.warning("Use username: admin and password: admin")
         st.stop()
 elif st.session_state.calculate and st.session_state.logged_in:
     logging.info("Button clicked")
