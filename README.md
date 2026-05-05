@@ -87,6 +87,9 @@ OR run scripts:
 ```bash
 python src/main.py
 ```
+
+---
+
 ## 🚀 Future Enhancements
 Automate ETL pipeline using Airflow / AWS Glue
 Add real-time emissions data ingestion
