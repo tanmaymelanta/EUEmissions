@@ -23,23 +23,6 @@ This project demonstrates **data engineering, analytics, and visualization skill
 
 ---
 
-## 🧱 Project Architecture
-
-
-EUEmissions/
-  │
-  ├── data/ # Raw and processed datasets
-  ├── notebooks/ # Exploratory Data Analysis (EDA)
-  ├── src/ # Core ETL / transformation scripts
-  ├── sql/ # SQL queries for aggregation and modeling
-  ├── utils/ # Helper functions
-  ├── dashboards/ # Optional Streamlit / visualization apps
-  ├── requirements.txt # Python dependencies
-  └── README.md
-
-
----
-
 ## ⚙️ Tech Stack
 
 - **Python** – Pandas, NumPy  
@@ -86,7 +69,7 @@ EUEmissions/
 ### 🔹 1. Clone Repository
 ```bash
 git clone https://github.com/tanmaymelanta/EUEmissions.git
-cd EUEmissions
+cd EUEmissions```
 🔹 2. Install Dependencies
 pip install -r requirements.txt
 🔹 3. Run the Project
