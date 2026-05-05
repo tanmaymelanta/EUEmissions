@@ -96,7 +96,10 @@ Add real-time emissions data ingestion
 Deploy dashboard using Streamlit Cloud / AWS EC2
 Add forecasting models for emissions prediction
 Integrate geospatial visualizations
-👤 Author
+
+---
+
+## 👤 Author
 
 Tanmay Melanta
 Aspiring Data Scientist | Data Engineer | Cloud Enthusiast
