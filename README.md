@@ -73,7 +73,10 @@ cd EUEmissions
 ```
 
 🔹 2. Install Dependencies
+```bash
 pip install -r requirements.txt
+```
+
 🔹 3. Run the Project
 
 Open Jupyter Notebook:
