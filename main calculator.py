@@ -198,6 +198,7 @@ def login():
         st.success("Login successful!")
     else:
         st.error("Invalid username or password")
+        st.warning("Use username: admin and password: admin")
 
 def logout():
     st.session_state.logged_in = False
@@ -280,7 +281,6 @@ st.button("Calculate", use_container_width=True, key="calculate")
 
 if st.session_state.calculate and not st.session_state.logged_in:
         st.warning("Please log in to continue")
-        st.warning("Use username: admin and password: admin")
         st.stop()
 elif st.session_state.calculate and st.session_state.logged_in:
     logging.info("Button clicked")
