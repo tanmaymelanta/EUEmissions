@@ -1,66 +1,74 @@
-# 🌍 EU Emissions Analysis Project
+# 🚢 EU Maritime Compliance Calculator
 
 ---
 
 ## 📌 Overview
 
-The **EU Emissions Analysis Project** is an end-to-end data analytics project focused on exploring and analyzing carbon emission patterns across European regions.
+The **EU Maritime Compliance Calculator** is an interactive Streamlit-based application designed to compute **FuelEU Maritime compliance metrics** and **EU ETS (Emissions Trading System) liabilities** for shipping voyages.
 
-It processes raw emissions datasets, performs transformation and aggregation using **SQL and Python**, and generates insights that help understand environmental impact across countries, sectors, and time periods.
+The application allows users to input voyage-level fuel consumption data and calculates:
+- Compliance balance under FuelEU regulations
+- Well-to-Wake (WtW) emission intensities
+- EU ETS emission allowances (EUA)
+- Estimated penalties for non-compliance
 
-This project demonstrates **data engineering, analytics, and visualization skills** using a modular and scalable pipeline approach.
+It also integrates **fuel price data** to provide additional cost visibility.
 
 ---
 
-## 🎯 Objectives
+## 🎯 Key Features
 
-- Ingest and process raw EU emissions datasets  
-- Clean and standardize inconsistent data  
-- Perform exploratory data analysis (EDA)  
-- Build aggregated views for emissions by region, sector, and time  
-- Identify key emission trends and patterns  
-- Enable reporting and visualization-ready datasets  
+- 🚢 Voyage-level fuel consumption input
+- 🌱 Biofuel blending support
+- ⚙️ LNG engine emission configurations
+- ❄️ Ice-class adjustment calculations
+- 📊 FuelEU compliance balance computation
+- 💰 EU ETS (EUA) emissions calculation
+- 📉 Penalty estimation based on emissions
+- ⛽ Live fuel price table (via daily scraped data)
 
 ---
 
 ## ⚙️ Tech Stack
 
-- **Python** – Pandas, NumPy  
-- **SQL** – Data aggregation and transformation  
-- **Jupyter Notebook** – Exploratory Data Analysis  
-- **Streamlit / Plotly** – Visualization (optional)  
-- **AWS / Cloud Tools** – Data processing (optional)  
+- **Python**
+- **Streamlit** – Interactive UI
+- **Pandas / NumPy** – Data processing
+- **Logging** – Application tracking
 
 ---
 
-## 🔄 Data Pipeline
+## 🔄 How It Works
 
-### 1. Data Ingestion
-- Load raw EU emissions datasets
+1. User inputs voyage details:
+   - Fuel types and consumption
+   - Biofuel blends
+   - LNG engine configurations
+   - Ice-class conditions
 
-### 2. Data Cleaning
-- Handle missing values and inconsistencies  
-- Normalize column names and formats  
+2. Application processes:
+   - Energy consumption (MJ)
+   - Emission factors (WtT, TtW)
 
-### 3. Transformation
-- Standardize emissions metrics  
-- Aggregate data by region, sector, and year  
-
-### 4. Analysis
-- Identify emission trends  
-- Perform sector-wise and region-wise comparisons  
-
-### 5. Output
-- Clean datasets ready for visualization and reporting  
+3. Outputs generated:
+   - **Well-to-Tank (WtT) intensity**
+   - **Tank-to-Wake (TtW) intensity**
+   - **Well-to-Wake (WtW) emissions**
+   - **Compliance balance**
+   - **Penalty estimation**
+   - **EU ETS allowances (EUA)**
 
 ---
 
-## 📊 Key Insights
+## 📊 Outputs
 
-- Identification of high-emission regions across Europe  
-- Sector-wise contribution to total emissions  
-- Year-over-year emission trends  
-- Temporal patterns in emissions distribution  
+- Total Energy in Scope  
+- Fuel-wise consumption breakdown  
+- GHG intensity metrics (WtT, TtW, WtW)  
+- Compliance balance (FuelEU)  
+- Estimated penalty (€)  
+- EU ETS total EUA  
+- Fuel price reference table  
 
 ---
 
@@ -77,29 +85,22 @@ cd EUEmissions
 pip install -r requirements.txt
 ```
 
-### 🔹 3. Run the Project
-
-Open Jupyter Notebook:
+### 🔹 3. Run Application
 ```bash
-jupyter notebook
-```
-OR run scripts:
-```bash
-python src/main.py
+streamlit run app.py
 ```
 
 ---
 
-## 🚀 Future Enhancements
-Automate ETL pipeline using Airflow / AWS Glue
-Add real-time emissions data ingestion
-Deploy dashboard using Streamlit Cloud / AWS EC2
-Add forecasting models for emissions prediction
-Integrate geospatial visualizations
+## 📌 Future Enhancements
+- Automate fuel price scraping pipeline
+- Add scenario comparison (multiple voyages)
+- Integrate real-time emissions data sources
+- Deploy on cloud (AWS / Streamlit Cloud)
+- Add export (PDF / Excel reports)
 
 ---
 
 ## 👤 Author
-
 Tanmay Melanta
-Aspiring Data Scientist | Data Engineer | Cloud Enthusiast
+Data Scientist | Data Engineer | Cloud Enthusiast
