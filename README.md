@@ -72,21 +72,22 @@ git clone https://github.com/tanmaymelanta/EUEmissions.git
 cd EUEmissions
 ```
 
-🔹 2. Install Dependencies
+### 🔹 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-🔹 3. Run the Project
+### 🔹 3. Run the Project
 
 Open Jupyter Notebook:
-
+```bash
 jupyter notebook
-
+```
 OR run scripts:
-
+```bash
 python src/main.py
-🚀 Future Enhancements
+```
+## 🚀 Future Enhancements
 Automate ETL pipeline using Airflow / AWS Glue
 Add real-time emissions data ingestion
 Deploy dashboard using Streamlit Cloud / AWS EC2
