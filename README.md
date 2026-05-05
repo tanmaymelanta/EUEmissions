@@ -27,15 +27,15 @@ This project demonstrates **data engineering, analytics, and visualization skill
 
 
 EUEmissions/
-│
-├── data/ # Raw and processed datasets
-├── notebooks/ # Exploratory Data Analysis (EDA)
-├── src/ # Core ETL / transformation scripts
-├── sql/ # SQL queries for aggregation and modeling
-├── utils/ # Helper functions
-├── dashboards/ # Optional Streamlit / visualization apps
-├── requirements.txt # Python dependencies
-└── README.md
+  │
+  ├── data/ # Raw and processed datasets
+  ├── notebooks/ # Exploratory Data Analysis (EDA)
+  ├── src/ # Core ETL / transformation scripts
+  ├── sql/ # SQL queries for aggregation and modeling
+  ├── utils/ # Helper functions
+  ├── dashboards/ # Optional Streamlit / visualization apps
+  ├── requirements.txt # Python dependencies
+  └── README.md
 
 
 ---
