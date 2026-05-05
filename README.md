@@ -69,7 +69,8 @@ This project demonstrates **data engineering, analytics, and visualization skill
 ### 🔹 1. Clone Repository
 ```bash
 git clone https://github.com/tanmaymelanta/EUEmissions.git
-cd EUEmissions```
+cd EUEmissions
+```bash
 🔹 2. Install Dependencies
 pip install -r requirements.txt
 🔹 3. Run the Project
